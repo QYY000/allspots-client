@@ -2,7 +2,7 @@ import axios from 'axios'
 import { UserSubmit, UserLoginResponse } from './models'
 
 export const apiService = axios.create({
-  baseURL: 'http://api.allspots.rafael.no/'
+  baseURL: 'https://allspots.herokuapp.com/'
 })
 
 /**
