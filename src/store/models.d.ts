@@ -29,3 +29,39 @@ export interface Profile {
   name: string
   email: string
 }
+
+export interface Access {
+  _id: string
+  title: string
+  slug: string
+}
+
+export interface Category {
+  _id: string
+  title: string
+  slug: string
+}
+
+export interface Skill {
+  _id: string
+  title: string
+  slug: string
+}
+
+export interface Size {
+  _id: string
+  title: string
+  slug: string
+}
+
+export interface Filters {
+  accesses: Access[]
+  categories: Category[]
+  skills: Skill[]
+  sizes: Size[]
+}
+
+export interface FiltersResponse {
+  content: Filters | null
+  error: Error | undefined
+}

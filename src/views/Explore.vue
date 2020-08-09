@@ -1,15 +1,15 @@
 <template>
   <div id="explore">
     <SideFilters></SideFilters>
-    <div class="rest">
-      spots here
+    <div id="spots">
+      <h3>Showing 8 search results</h3>
     </div>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from 'vue-property-decorator'
-import SideFilters from '@/components/SideFilters'
+import SideFilters from '@/components/SideFilters.vue'
 
 @Component({
   components: {
@@ -24,5 +24,10 @@ export default class Explore extends Vue {
 <style>
 #explore {
   display: flex;
+}
+
+#spots {
+  padding: 20px;
+  box-sizing: border-box;
 }
 </style>

@@ -7,7 +7,7 @@
 
 <script>
 import { Vue, Component } from 'vue-property-decorator'
-import TopNav from '@/components/TopNav'
+import TopNav from '@/components/TopNav.vue'
 
 @Component({
   components: {
@@ -26,6 +26,7 @@ export default class App extends Vue {
   --primary: #1666D9;
   --primaryDark: #1358BA;
   --grayLighter: #E6E6E6;
+  --grayLight: #989898;
   --gray: #666666;
   --grayDarkest: #000000;
 }
@@ -136,5 +137,13 @@ body {
 
 .btn:hover {
   background-color: var(--primaryDark);
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--grayDarkest);
 }
 </style>
