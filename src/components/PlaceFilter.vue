@@ -11,28 +11,19 @@
         </clipPath>
       </defs>
     </svg>
-    <input id="places" v-model="searchTerm" type="text" placeholder="Search for a place...">
-    {{ place }}
+    <input id="places" type="text" placeholder="Search for a place...">
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator"
+import { Component, Vue } from "vue-property-decorator"
 import places from 'places.js'
 
 @Component({
   name: 'PlaceFilter',
 })
 export default class PlaceFilter extends Vue {
-  searchTerm = ''
   place = ''
-
-  @Watch('searchTerm')
-  watchPlaceTerm(value: string) {
-    if(value.length < 1){
-      this.place = ''
-    }
-  }
 
   mounted() {
     const placesInstance = places({
@@ -55,7 +46,6 @@ export default class PlaceFilter extends Vue {
     })
 
     placesInstance.on('clear', () => {
-      this.searchTerm = ''
       this.place = ''
     })
   }
