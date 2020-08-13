@@ -30,7 +30,7 @@ export async function signInUser(user: UserSubmit): Promise<UserLoginResponse | 
     const response = await apiService.post('users/authenticate', user)
     return response.data as UserLoginResponse
   } catch (e) {
-    console.error(e)
+    console.log(e)
   }
 }
 
