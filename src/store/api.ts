@@ -30,7 +30,7 @@ export async function signInUser(user: UserSubmit): Promise<UserLoginResponse | 
     const response = await apiService.post('users/authenticate', user)
     return response.data as UserLoginResponse
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 
@@ -41,7 +41,7 @@ export async function signInUser(user: UserSubmit): Promise<UserLoginResponse | 
  */
 export async function getFilters(): Promise<FiltersResponse | undefined> {
   try {
-    const response = await apiService.get('filters/list')
+    const response = await apiService.get('filters')
     return response.data as FiltersResponse
   } catch (e) {
     console.error(e)
