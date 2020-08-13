@@ -64,6 +64,7 @@ export default class App extends Vue {
   z-index: 99999;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: opacity 400ms ease-in-out;
 }
 
@@ -73,7 +74,6 @@ export default class App extends Vue {
 
 #splash svg {
   display: inline-block;
-  margin: 0 auto;
 }
 
 @font-face {
@@ -190,5 +190,13 @@ h3 {
   font-size: 18px;
   font-weight: 600;
   color: var(--grayDarkest);
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray);
 }
 </style>

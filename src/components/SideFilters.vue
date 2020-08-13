@@ -5,9 +5,7 @@
       <a href="#">Reset filters</a>
     </div>
     <PlaceFilter></PlaceFilter>
-    <ul>
-      <li v-for="access in accesses" :key="access._id">{{ access.title }}</li>
-    </ul>
+    <AccessFilter :accesses="accesses"></AccessFilter>
     <ul>
       <li v-for="category in categories" :key="category._id">{{ category.title }}</li>
     </ul>
@@ -23,13 +21,15 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator"
 import PlaceFilter from '@/components/PlaceFilter.vue'
+import AccessFilter from '@/components/AccessFilter.vue'
 import filters from '@/store/modules/filters'
 import { mapState } from 'vuex';
 
 @Component({
   name: 'SideFilters',
   components: {
-    PlaceFilter
+    PlaceFilter,
+    AccessFilter
   },
   computed: {
     ...mapState('filters', {
