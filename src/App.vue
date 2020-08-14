@@ -199,4 +199,57 @@ h4 {
   font-weight: 500;
   color: var(--gray);
 }
+
+.checkbox {
+  position: relative;
+  padding-left: 25px;
+  padding-right: 15px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.checkbox > div {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  top: 1px;
+  left: 0;
+  background-color: var(--white);
+  display: block;
+  border: 1px solid var(--grayLighter);
+  border-radius: 3px;
+}
+
+.checkbox:hover > div {
+  border-color: var(--grayLight);
+}
+
+.checkbox input {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.checkbox input:checked + div {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  background-image: url(/img/check.svg);
+  background-size: 11px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.checkbox input:checked + div + span {
+  color: var(--primary);
+}
+
+.checkbox span {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--grayLight);
+  font-size: 14px;
+  line-height: 17px;
+}
 </style>

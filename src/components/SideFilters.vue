@@ -6,15 +6,9 @@
     </div>
     <PlaceFilter></PlaceFilter>
     <AccessFilter :accesses="accesses"></AccessFilter>
-    <ul>
-      <li v-for="category in categories" :key="category._id">{{ category.title }}</li>
-    </ul>
-    <ul>
-      <li v-for="skill in skills" :key="skill._id">{{ skill.title }}</li>
-    </ul>
-    <ul>
-      <li v-for="size in sizes" :key="size._id">{{ size.title }}</li>
-    </ul>
+    <CheckboxGroup title="Skills" :items="skills"></CheckboxGroup>
+    <CheckboxGroup title="Categories" :items="categories"></CheckboxGroup>
+    <CheckboxGroup title="Sizes" :items="sizes"></CheckboxGroup>
   </div>
 </template>
 
@@ -22,6 +16,7 @@
 import { Vue, Component } from "vue-property-decorator"
 import PlaceFilter from '@/components/PlaceFilter.vue'
 import AccessFilter from '@/components/AccessFilter.vue'
+import CheckboxGroup from '@/components/CheckboxGroup.vue'
 import filters from '@/store/modules/filters'
 import { mapState } from 'vuex';
 
@@ -29,7 +24,8 @@ import { mapState } from 'vuex';
   name: 'SideFilters',
   components: {
     PlaceFilter,
-    AccessFilter
+    AccessFilter,
+    CheckboxGroup
   },
   computed: {
     ...mapState('filters', {
