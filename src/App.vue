@@ -19,25 +19,37 @@
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import TopNav from '@/components/TopNav.vue'
+import { mapState } from 'vuex';
+import filters from '@/store/modules/filters'
 
 @Component({
   components: {
     TopNav
+  },
+  computed: {
+    ...mapState('filters', {
+      loadedFilters: 'loadedFilters'
+    }),
   }
 })
 export default class App extends Vue {
   loaded = false
   fade = false
 
-  mounted() {
-    setTimeout(() => {
+  @Watch('loadedFilters')
+  onPropertyChanged(value) {
+    if(value){
       this.fade = true
       setTimeout(() => {
         this.loaded = true
       }, 400)
-    }, 1500)
+    }
+  }
+
+  mounted() {
+    filters.getFilters()
   }
 }
 </script>

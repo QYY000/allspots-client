@@ -11,22 +11,28 @@
         </clipPath>
       </defs>
     </svg>
-    <input id="places" type="text" placeholder="Search for a place...">
+    <input id="places" type="text" v-model="place" placeholder="Search for a place...">
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator"
-import places from 'places.js'
+import { Component, Vue, Prop, Watch } from "vue-property-decorator"
+import places, { PlacesInstance } from 'places.js'
 
 @Component({
   name: 'PlaceFilter',
 })
 export default class PlaceFilter extends Vue {
+  @Prop()
+  select?: Function
+  @Prop()
+  selected = ''
+
   place = ''
+  placesInstance?: PlacesInstance
 
   mounted() {
-    const placesInstance = places({
+    this.placesInstance = places({
       appId: process.env.VUE_APP_ALGOLIA_ID,
       apiKey: process.env.VUE_APP_ALGOLIA_KEY,
       container: '#places',
@@ -41,13 +47,29 @@ export default class PlaceFilter extends Vue {
       }
     })
 
-    placesInstance.on('change', () => {
+    const placesInstance = this.placesInstance
+
+    this.placesInstance.on('change', () => {
       this.place = placesInstance.getVal()
+      if(typeof this.select !== 'undefined'){
+        this.select(this.place)
+      }
     })
 
-    placesInstance.on('clear', () => {
+    this.placesInstance.on('clear', () => {
       this.place = ''
+      if(typeof this.select !== 'undefined'){
+        this.select(this.place)
+      }
     })
+  }
+
+  @Watch('selected')
+  onSelectedChange() {
+    this.place = this.selected
+    if(typeof this.placesInstance !== 'undefined'){
+      this.placesInstance.setVal(this.place)
+    }
   }
 }
 </script>

@@ -10,10 +10,16 @@ import { getFilters } from '../api'
   store
 })
 class FiltersModule extends VuexModule {
+  loadedFilters = false
   accesses: Access[] = []
   categories: Category[] = []
   skills: Skill[] = []
   sizes: Size[] = []
+  selectedLocation = ''
+  selectedAccess = ''
+  selectedCategory: Array<string> = []
+  selectedSkill: Array<string> = []
+  selectedSize: Array<string> = []
 
   @Mutation
   setFilters(result: Filters) {
@@ -21,6 +27,32 @@ class FiltersModule extends VuexModule {
     this.categories = result.categories
     this.skills = result.skills
     this.sizes = result.sizes
+    this.loadedFilters = true
+  }
+
+  @Mutation
+  selectLocation(location: string) {
+    this.selectedLocation = location
+  }
+
+  @Mutation
+  selectAccess(access: string) {
+    this.selectedAccess = access
+  }
+
+  @Mutation
+  selectSkill(skills: Array<string>) {
+    this.selectedSkill = skills
+  }
+
+  @Mutation
+  selectCategory(categories: Array<string>) {
+    this.selectedCategory = categories
+  }
+
+  @Mutation
+  selectSize(sizes: Array<string>) {
+    this.selectedSize = sizes
   }
 
   @Action({ commit: 'setFilters' })

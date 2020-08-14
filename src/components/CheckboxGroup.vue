@@ -4,7 +4,7 @@
     <ul id="checkbox-group">
       <li v-for="item in items" :key="item._id">
         <label class="checkbox">
-          <input type="checkbox">
+          <input type="checkbox" :value="item._id" v-model="selectedItems">
           <div></div>
           <span>{{ item.title }}</span>
         </label>
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator"
+import { Vue, Component, Prop, Watch } from "vue-property-decorator"
 import { Skill } from '@/store/models'
 
 @Component({
@@ -22,9 +22,35 @@ import { Skill } from '@/store/models'
 })
 export default class CheckboxGroup extends Vue {
   @Prop()
-  items?: Array<Skill>
-  @Prop()
   title?: string
+  @Prop()
+  select?: Function
+  @Prop()
+  selected?: Array<string>
+  @Prop()
+  items?: Array<Skill>
+
+  selectedItems: Array<string> = []
+
+  mounted() {
+    if(typeof this.selected !== 'undefined'){
+      this.selectedItems = this.selected
+    }
+  }
+
+  @Watch('selectedItems')
+  onPropertyChanged(value: Array<string> , oldValue: Array<string> ) {
+    if(value !== oldValue && typeof this.select !== 'undefined'){
+      this.select(value)
+    }
+  }
+
+  @Watch('selected')
+  onSelectedChange() {
+    if(typeof this.selected !== 'undefined'){
+      this.selectedItems = this.selected
+    }
+  }
 }
 </script>
 

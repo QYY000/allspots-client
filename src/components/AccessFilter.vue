@@ -5,8 +5,8 @@
       <div 
         v-for="access in accesses" 
         :key="access._id" 
-        :class="access.title === selected ? 'selected' : ''"
-        @click="selectAccess(access.title)"
+        :class="access._id === selectedItem ? 'selected' : ''"
+        @click="selectAccess(access._id)"
       >
         {{ access.title }}
       </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator"
+import { Vue, Component, Prop, Watch } from "vue-property-decorator"
 import { Access } from '@/store/models'
 
 @Component({
@@ -24,11 +24,27 @@ import { Access } from '@/store/models'
 export default class AccessFilter extends Vue {
   @Prop()
   accesses?: Array<Access>
+  @Prop()
+  select?: Function
+  @Prop()
+  selected = ''
 
-  selected = 'Public'
+  selectedItem = ''
+
+  mounted() {
+    this.selectedItem = this.selected
+  }
   
-  selectAccess(title: string) {
-    this.selected = title
+  selectAccess(id: string) {
+    if(this.selectedItem !== id && typeof this.select !== 'undefined'){
+      this.selectedItem = id
+      this.select(id)
+    }
+  }
+
+  @Watch('selected')
+  onSelectedChange() {
+    this.selectedItem = this.selected
   }
 }
 </script>
