@@ -23,6 +23,7 @@ import { Vue, Component, Watch } from 'vue-property-decorator'
 import TopNav from '@/components/TopNav.vue'
 import { mapState } from 'vuex';
 import filters from '@/store/modules/filters'
+import spots from '@/store/modules/spots'
 
 @Component({
   components: {
@@ -50,6 +51,13 @@ export default class App extends Vue {
 
   mounted() {
     filters.getFilters()
+    spots.getSpots({
+      selectedLocation: '', 
+      selectedAccess: '', 
+      selectedCategory: [], 
+      selectedSkill: [], 
+      selectedSize: []
+    })
   }
 }
 </script>

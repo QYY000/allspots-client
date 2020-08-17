@@ -65,3 +65,28 @@ export interface FiltersResponse {
   content: Filters | null
   error: Error | undefined
 }
+
+export interface SelectedFilters {
+  selectedLocation: string
+  selectedAccess: string
+  selectedCategory: Array<string>
+  selectedSkill: Array<string>
+  selectedSize: Array<string>
+}
+
+export interface Spot {
+  _id: string
+  name: string
+  slug: string
+  description: string
+  lat: string
+  lon: string
+  country: string
+  city: string
+  image: string
+}
+
+export interface SpotsResponse {
+  content: Spot[] | null
+  error: Error | undefined
+}

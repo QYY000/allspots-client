@@ -2,18 +2,26 @@
   <div id="explore">
     <SideFilters></SideFilters>
     <div id="spots">
-      <h3>Showing 8 search results</h3>
+      <div v-for="spot in spots" :key="spot._id">
+        {{ spot.name }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from 'vue-property-decorator'
+import { mapState } from 'vuex';
 import SideFilters from '@/components/SideFilters.vue'
 
 @Component({
   components: {
     SideFilters
+  },
+  computed: {
+    ...mapState('spots', {
+      spots: 'spots'
+    }),
   }
 })
 export default class Explore extends Vue {

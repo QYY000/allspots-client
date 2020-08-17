@@ -38,11 +38,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator"
+import { Vue, Component, Watch } from "vue-property-decorator"
 import PlaceFilter from '@/components/PlaceFilter.vue'
 import AccessFilter from '@/components/AccessFilter.vue'
 import CheckboxGroup from '@/components/CheckboxGroup.vue'
 import { mapState, mapMutations } from 'vuex';
+import spots from '@/store/modules/spots'
+import filters from '@/store/modules/filters';
 
 @Component({
   name: 'SideFilters',
@@ -81,6 +83,41 @@ export default class SideFilters extends Vue {
     this.$store.commit('filters/selectSkill', [])
     this.$store.commit('filters/selectCategory', [])
     this.$store.commit('filters/selectSize', [])
+  }
+
+  reFilterSpots() {
+    spots.getSpots({
+      selectedLocation: filters.selectedLocation, 
+      selectedAccess: filters.selectedAccess, 
+      selectedCategory: filters.selectedCategory, 
+      selectedSkill: filters.selectedSkill, 
+      selectedSize: filters.selectedSize
+    })
+  }
+
+  @Watch('selectedLocation')
+  onSelectedLocationChange() {
+    this.reFilterSpots()
+  }
+
+  @Watch('selectedAccess')
+  onSelectedAccessChange() {
+    this.reFilterSpots()
+  }
+
+  @Watch('selectedCategory')
+  onSelectedCategoryChange() {
+    this.reFilterSpots()
+  }
+
+  @Watch('selectedSize')
+  onSelectedSizeChange() {
+    this.reFilterSpots()
+  }
+
+  @Watch('selectedSkill')
+  onSelectedSkillChange() {
+    this.reFilterSpots()
   }
 }
 </script>
