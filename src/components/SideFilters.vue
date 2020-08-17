@@ -127,8 +127,10 @@ export default class SideFilters extends Vue {
   background-color: var(--almostWhite);
   width: 320px;
   min-height: calc(100vh - 59px);
+  max-height: calc(100vh - 59px);
   padding: 20px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .filters-header {
