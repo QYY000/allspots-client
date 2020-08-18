@@ -248,6 +248,10 @@ h4 {
   display: block;
   border: 1px solid var(--grayLighter);
   border-radius: 3px;
+  background-image: url(/img/check.svg);
+  background-size: 11px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .checkbox:hover > div {
@@ -265,10 +269,6 @@ h4 {
 .checkbox input:checked + div {
   background-color: var(--primary);
   border-color: var(--primary);
-  background-image: url(/img/check.svg);
-  background-size: 11px;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .checkbox input:checked + div + span {
