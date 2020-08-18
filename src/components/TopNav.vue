@@ -9,12 +9,12 @@
     <div id="menus">
       <ul>
         <li><router-link to="/">Explore</router-link></li>
-        <li><router-link v-if="!isLoggedIn" to="/sign-in">Sign in</router-link></li>
-        <li><router-link v-if="!isLoggedIn" to="/sign-up">Sign up</router-link></li>
+        <li v-if="!isLoggedIn"><router-link to="/sign-in">Sign in</router-link></li>
+        <li v-if="!isLoggedIn"><router-link to="/sign-up">Sign up</router-link></li>
+        <li v-if="isLoggedIn"><span>{{ user.name }}</span></li>
       </ul>
-      <span v-if="isLoggedIn">{{ user.name }}</span>
     </div>
-    <div>
+    <div v-if="isLoggedIn">
       <router-link to="/add" class="btn">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 3.33331V12.6666" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -75,7 +75,8 @@ export default class TopNav extends Vue {
   margin-left: 10px;
 }
 
-#menus ul li a {
+#menus ul li a,
+#menus ul li span {
   text-decoration: none;
   color: var(--gray);
   font-size: 14px;
@@ -83,6 +84,8 @@ export default class TopNav extends Vue {
   display: block;
   padding: 4px 10px;
 }
+
+
 
 #menus ul li a:hover {
   color: var(--grayDarkest);

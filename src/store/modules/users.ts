@@ -1,6 +1,6 @@
 import { VuexModule, Module, getModule, Action, Mutation } from 'vuex-module-decorators'
 import store from '@/store'
-import { User, Profile, UserSubmit, UserLogin } from '../models'
+import { User, UserSubmit, UserLogin, Error } from '../models'
 import { signInUser } from '../api'
 
 @Module({
@@ -12,7 +12,6 @@ import { signInUser } from '../api'
 class UsersModule extends VuexModule {
   user: User | null = null
   token = ''
-  profile: Profile | null = null
 
   @Mutation
   setUser(result: UserLogin) {
@@ -20,16 +19,34 @@ class UsersModule extends VuexModule {
     this.token = result.token
   }
 
+  @Mutation
+  setUserFromLocalStorage() {
+    // Get user
+    const userString = localStorage.getItem('user')
+    if (typeof userString === 'string') {
+      const user = JSON.parse(userString)
+      this.user = user
+    }
+
+    // Get token
+    const token = localStorage.getItem('token')
+    if (typeof token === 'string') {
+      this.token = token
+    }
+  }
+
   get isLoggedIn() {
     return (this.user && this.token) || null
   }
 
   @Action({ commit: 'setUser' })
-  async signIn(userSubmit: UserSubmit): Promise<UserLogin> {
+  async signIn(userSubmit: UserSubmit): Promise<UserLogin | Error> {
     const result = await signInUser(userSubmit)
     if (typeof result !== 'undefined' && typeof result.error !== 'undefined' && result?.error.status) {
-      console.error(result.error)
+      return result.error
     } else if (typeof result !== 'undefined' && result.content !== null) {
+      localStorage.setItem('user', JSON.stringify(result.content.user))
+      localStorage.setItem('token', JSON.stringify(result.content.token))
       return { user: result.content.user, token: result.content.token }
     }
 

@@ -25,11 +25,6 @@ export interface UserSubmit {
   password: string
 }
 
-export interface Profile {
-  name: string
-  email: string
-}
-
 export interface Access {
   _id: string
   title: string

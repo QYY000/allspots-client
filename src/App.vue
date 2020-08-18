@@ -24,6 +24,7 @@ import TopNav from '@/components/TopNav.vue'
 import { mapState } from 'vuex';
 import filters from '@/store/modules/filters'
 import spots from '@/store/modules/spots'
+import users from '@/store/modules/users'
 
 @Component({
   components: {
@@ -50,6 +51,7 @@ export default class App extends Vue {
   }
 
   mounted() {
+    users.setUserFromLocalStorage()
     filters.getFilters()
     spots.getSpots({
       selectedLocation: '', 
@@ -184,7 +186,14 @@ body {
   font-style: normal;
 }
 
+.container {
+  width: 98%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .btn {
+  border: 0;
   background-color: var(--primary);
   color: var(--white);
   display: flex;
@@ -194,6 +203,7 @@ body {
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .btn svg {
@@ -271,5 +281,14 @@ h4 {
   color: var(--grayLight);
   font-size: 14px;
   line-height: 17px;
+}
+
+.error {
+  background-color: #e80707;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 </style>
