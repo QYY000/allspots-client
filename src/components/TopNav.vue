@@ -11,6 +11,7 @@
         <li><router-link to="/">Explore</router-link></li>
         <li v-if="!isLoggedIn"><router-link to="/sign-in">Sign in</router-link></li>
         <li v-if="!isLoggedIn"><router-link to="/sign-up">Sign up</router-link></li>
+        <li v-if="isLoggedIn"><a href="#" @click.prevent="logout">Log out</a></li>
         <li v-if="isLoggedIn"><span>{{ user.name }}</span></li>
       </ul>
     </div>
@@ -41,6 +42,11 @@ export default class TopNav extends Vue {
   }
   get user() {
     return users.user
+  }
+
+  logout() {
+    this.$store.commit('users/logout')
+    this.$router.push({ name: 'SignIn' })
   }
 }
 </script>
@@ -84,7 +90,6 @@ export default class TopNav extends Vue {
   display: block;
   padding: 4px 10px;
 }
-
 
 
 #menus ul li a:hover {

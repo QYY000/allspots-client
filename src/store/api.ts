@@ -1,5 +1,13 @@
 import axios from 'axios'
-import { UserSubmit, UserLoginResponse, FiltersResponse, SpotsResponse, SelectedFilters } from './models'
+import {
+  UserSubmit,
+  UserLoginResponse,
+  FiltersResponse,
+  SpotsResponse,
+  SelectedFilters,
+  NewUserResponse,
+  NewUserSubmit
+} from './models'
 
 export const apiService = axios.create({
   baseURL: process.env.VUE_APP_API
@@ -29,6 +37,20 @@ export async function signInUser(user: UserSubmit): Promise<UserLoginResponse | 
   try {
     const response = await apiService.post('users/authenticate', user)
     return response.data as UserLoginResponse
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+/**
+ * Signs up a user
+ * @param user NewUserSubmit
+ * @return Promise<UserLoginResponse | undefined>
+ */
+export async function signUpUser(user: NewUserSubmit): Promise<NewUserResponse | undefined> {
+  try {
+    const response = await apiService.post('users/register', user)
+    return response.data as NewUserResponse
   } catch (e) {
     console.error(e)
   }

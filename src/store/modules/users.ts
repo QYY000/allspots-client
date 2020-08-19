@@ -1,7 +1,7 @@
 import { VuexModule, Module, getModule, Action, Mutation } from 'vuex-module-decorators'
 import store from '@/store'
-import { User, UserSubmit, UserLogin, Error } from '../models'
-import { signInUser } from '../api'
+import { User, NewUserSubmit, UserSubmit, UserLogin, Error, NewUser } from '../models'
+import { signInUser, signUpUser } from '../api'
 
 @Module({
   dynamic: true,
@@ -17,6 +17,12 @@ class UsersModule extends VuexModule {
   setUser(result: UserLogin) {
     this.user = result.user
     this.token = result.token
+  }
+
+  @Mutation
+  logout() {
+    this.user = null
+    this.token = ''
   }
 
   @Mutation
@@ -51,6 +57,18 @@ class UsersModule extends VuexModule {
     }
 
     return { user: null, token: '' }
+  }
+
+  @Action({ commit: '' })
+  async signUp(newUserSubmit: NewUserSubmit): Promise<NewUser | Error> {
+    const result = await signUpUser(newUserSubmit)
+    if (typeof result !== 'undefined' && typeof result.error !== 'undefined' && result?.error.status) {
+      return result.error
+    } else if (typeof result !== 'undefined' && result.content !== null) {
+      return { user: result.content.user }
+    }
+
+    return { user: null }
   }
 }
 

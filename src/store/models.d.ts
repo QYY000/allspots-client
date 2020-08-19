@@ -25,6 +25,22 @@ export interface UserSubmit {
   password: string
 }
 
+export interface NewUser {
+  user: User | null
+}
+
+export interface NewUserResponse {
+  content: NewUser | null
+  error: Error | undefined
+}
+
+export interface NewUserSubmit {
+  name: string
+  email: string
+  password: string
+  conPassword: string
+}
+
 export interface Access {
   _id: string
   title: string

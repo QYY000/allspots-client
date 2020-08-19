@@ -202,6 +202,7 @@ body {
   padding: 9px 16px;
   border-radius: 20px;
   font-size: 14px;
+  font-family: 'SF Pro Text';
   font-weight: 500;
   cursor: pointer;
 }
@@ -281,6 +282,84 @@ h4 {
   color: var(--grayLight);
   font-size: 14px;
   line-height: 17px;
+}
+
+.form {
+  max-width: 400px;
+  margin: 40px auto 0 auto;
+}
+
+.form input,
+.form textarea,
+.form select {
+  /* Remove First */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  margin-top: 15px;
+  padding: 0 10px;
+  line-height: 38px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid var(--grayLighter);
+  background-color: var(--white);
+  outline: none;
+
+  font-family: 'SF Pro Text';
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.form textarea {
+  min-height: 120px;
+  max-height: 120px;
+  max-width: 100%;
+  min-width: 100%;
+  resize: none;
+}
+
+.form select {
+  cursor: pointer;
+  background-image: url('/img/down.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: right .7em top 50%, 0 0;
+  background-size: 16px;
+}
+
+.form .btn {
+  /* Remove First */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  margin-top: 15px;
+  outline: 0;
+}
+
+.form .double,
+.form .quad {
+  margin: 0 -7.5px;
+  display: flex;
+}
+
+.form .double input,
+.form .double select {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  width: 50%;
+  display: inline-block;
+}
+
+.form .quad input,
+.form .quad select {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  width: 25%;
+  display: inline-block;
 }
 
 .error {
