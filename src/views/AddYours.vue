@@ -15,25 +15,25 @@
         </div>
         <input type="text" v-model="image" placeholder="Image link">
         <div class="quad">
-          <select name="category" id="category" v-model="category">
+          <select id="category" v-model="category">
             <option value="">Category</option>
-            <option v-for="c in categories" :key="c.id" :value="c.id">{{ c.title }}</option>
+            <option v-for="c in categories" :key="c.id" :value="c._id">{{ c.title }}</option>
           </select>
-          <select name="access" id="access" v-model="access">
+          <select id="access" v-model="access">
             <option value="">Access</option>
-            <option v-for="a in accesses" :key="a.id" :value="a.id">{{ a.title }}</option>
+            <option v-for="a in accesses" :key="a.id" :value="a._id">{{ a.title }}</option>
           </select>
-          <select name="size" id="size" v-model="size">
+          <select id="size" v-model="size">
             <option value="">Size</option>
-            <option v-for="sz in sizes" :key="sz.id" :value="sz.id">{{ sz.title }}</option>
+            <option v-for="sz in sizes" :key="sz.id" :value="sz._id">{{ sz.title }}</option>
           </select>
-          <select name="skill" id="skill" v-model="skill">
+          <select id="skill" v-model="skill">
             <option value="">Skill</option>
-            <option v-for="sk in skills" :key="sk.id" :value="sk.id">{{ sk.title }}</option>
+            <option v-for="sk in skills" :key="sk.id" :value="sk._id">{{ sk.title }}</option>
           </select>
         </div>
         <div v-if="error" class="error">{{ errors[error] }}</div>
-        <button @click.prevent="singUp" class="btn">Submit spot</button>
+        <button @click.prevent="addSpot" class="btn">Submit spot</button>
       </form>
     </div>
   </div>
@@ -41,7 +41,7 @@
 
 <script>
 import { Vue, Component } from 'vue-property-decorator'
-import users from '@/store/modules/users'
+import spots from '@/store/modules/spots'
 import { errors } from '@/config/messages'
 import { mapState } from 'vuex';
 
@@ -70,20 +70,27 @@ export default class AddYours extends Vue {
   error = ''
   errors = errors
 
-  async singUp() {
+  async addSpot() {
     this.error = ''
 
-    const response = await users.signUp({
+    const response = await spots.addSpot({
       name: this.name,
-      email: this.email,
-      password: this.password,
-      conPassword: this.conPassword
+      description: this.description,
+      lat: this.lat,
+      lon: this.lon,
+      city: this.city,
+      country: this.country,
+      image: this.image,
+      category: this.category,
+      access: this.access,
+      size: this.size,
+      skill: this.skill
     })
 
     if(typeof response.message !== 'undefined'){
       this.error = response.message
-    }else if(typeof response.user !== 'undefined'){
-      this.$router.push({ name: 'SignIn' })
+    }else if(typeof response.spot !== 'undefined'){
+      this.$router.push({ name: 'Explore' })
     }
   }
 }

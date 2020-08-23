@@ -6,7 +6,9 @@ import {
   SpotsResponse,
   SelectedFilters,
   NewUserResponse,
-  NewUserSubmit
+  NewUserSubmit,
+  NewSpotSubmit,
+  NewSpotResponse
 } from './models'
 
 export const apiService = axios.create({
@@ -102,6 +104,20 @@ export async function getSpots(filters: SelectedFilters): Promise<SpotsResponse 
 
     const response = await apiService.get(`spots${parameters}`)
     return response.data
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+/**
+ * Add new spot
+ * @param user NewUserSubmit
+ * @return Promise<UserLoginResponse | undefined>
+ */
+export async function addNewSpot(spot: NewSpotSubmit): Promise<NewSpotResponse | undefined> {
+  try {
+    const response = await apiService.post('spots/add', spot)
+    return response.data as NewSpotResponse
   } catch (e) {
     console.error(e)
   }

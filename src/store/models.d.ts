@@ -97,6 +97,29 @@ export interface Spot {
   image: string
 }
 
+export interface NewSpotSubmit {
+  name: string
+  description: string
+  lat: string
+  lon: string
+  city: string
+  country: string
+  image: string
+  category: string
+  access: string
+  size: string
+  skill: string
+}
+
+export interface NewSpot {
+  spot: Spot | null
+}
+
+export interface NewSpotResponse {
+  content: NewSpot | null
+  error: Error | undefined
+}
+
 export interface SpotsResponse {
   content: Spot[] | null
   error: Error | undefined
