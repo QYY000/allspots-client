@@ -1,24 +1,46 @@
-# allspots-client
+<p align="center">
+<img src="https://user-images.githubusercontent.com/924985/89710534-53057b00-d984-11ea-852f-3535e0d8b020.png" width="156.5px">
+</p>
 
-## Project setup
-```
-npm install
-```
+<p align="center">
+AllSpots aims to be the personal project I've always wanted to do and never ended up doing it. A catalog of parkour spots around the world, with good descriptions and attributes to help athlestes find the best location when visiting new countries, new cities, new places in general. 
+</p>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![Light Theme](https://user-images.githubusercontent.com/924985/91487388-f247cf00-e8ad-11ea-9933-ba03bac8a74d.png)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# Table of contents
 
-### Lints and fixes files
-```
-npm run lint
-```
+- [Technologies](https://github.com/rafmst/allspots-api#technologies)
+- [License](https://github.com/rafmst/allspots-api#license)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Technologies
+
+| Technology  | Version |
+|---|---|
+| Typescript | 3.9.7 |
+| Koa | 2.13.0 |
+| Mongo | 4.4.0 |
+
+# License
+
+MIT License
+
+Copyright (c) 2020 AllSpots by Rafael Morais
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
