@@ -215,11 +215,20 @@ body {
   background-color: var(--primaryDark);
 }
 
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h1, 
 h3 {
   margin: 0;
   padding: 0;
-  font-size: 18px;
-  font-weight: 600;
   color: var(--grayDarkest);
 }
 

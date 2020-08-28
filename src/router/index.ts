@@ -36,6 +36,14 @@ const routes: Array<RouteConfig> = [
     meta: {
       title: 'Sign up'
     }
+  },
+  {
+    path: '/spot/:slug',
+    name: 'Spot',
+    component: () => import('../views/Spot.vue'),
+    meta: {
+      title: 'Spot'
+    }
   }
 ]
 
@@ -47,7 +55,7 @@ const router = new VueRouter({
 })
 
 const DEFAULT_TITLE = 'AllSpots'
-router.afterEach((to, from) => {
+router.afterEach(to => {
   Vue.nextTick(() => {
     document.title = `${to.meta.title} — ${DEFAULT_TITLE}`
   })

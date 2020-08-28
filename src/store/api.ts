@@ -8,7 +8,8 @@ import {
   NewUserResponse,
   NewUserSubmit,
   NewSpotSubmit,
-  NewSpotResponse
+  NewSpotResponse,
+  SingleSpotResponse
 } from './models'
 
 export const apiService = axios.create({
@@ -118,6 +119,20 @@ export async function addNewSpot(spot: NewSpotSubmit): Promise<NewSpotResponse |
   try {
     const response = await apiService.post('spots/add', spot)
     return response.data as NewSpotResponse
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+/**
+ * Signs in a user
+ * @param user UserSubmit
+ * @return Promise<UserLoginResponse | undefined>
+ */
+export async function fetchSingleSpot(slug: string): Promise<SingleSpotResponse | undefined> {
+  try {
+    const response = await apiService.get(`spots/${slug}`)
+    return response.data
   } catch (e) {
     console.error(e)
   }
